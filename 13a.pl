@@ -3,13 +3,13 @@ use List::Util qw(min);
 for (<>) {
   chomp;
   unless ($_) {
-    $sum += find_symmetry(@pattern) if @pattern;
+    $sum += find_symmetry();
     @pattern = ();
   } else {
     push @pattern, [split //];
   }
 }
-$sum += find_symmetry(@pattern) if @pattern;
+$sum += find_symmetry();
 
 print "$sum\n";
 
@@ -29,6 +29,7 @@ sub find_symmetry {
     return $pivot if $possible;
   }
 
+  # Look for horizontal symmetry
   for $pivot (1..@pattern-1) {
     $possible = 1;
 
